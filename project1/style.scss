@@ -75,6 +75,9 @@ input[type=number] {
     top: 0;
     padding: 5px;
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 
     span {
         font-weight: lighter;
