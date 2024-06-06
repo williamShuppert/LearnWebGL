@@ -9,8 +9,8 @@ const radians = toRadian
 // Settings
 let fov = 75
 export let mouseSensitivity = .1
+export let moveSpeed = 5
 const aspectRatio = 16/9.
-const moveSpeed = 5
 const clearColor = [.2, .3, .3, 1]
 const fpsInterval = 500 // How often to calculate FPS, in milliseconds
 const maxFpsSamples = 5 // Number of FPS samples
@@ -295,4 +295,8 @@ main()
 
 export function setMouseSensitivity(sensitivity) {
     mouseSensitivity = parseFloat(sensitivity)
+}
+
+export function setMoveSpeed(speed) {
+    moveSpeed = parseFloat(speed)
 }
