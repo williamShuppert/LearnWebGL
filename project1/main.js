@@ -6,6 +6,17 @@ import { vec3, mat4 } from "../shared/glmatrix/next/index.js"
 
 const radians = toRadian
 
+// Settings
+let fov = 75
+export let mouseSensitivity = .1
+const aspectRatio = 16/9.
+const moveSpeed = 5
+const clearColor = [.2, .3, .3, 1]
+const fpsInterval = 500 // How often to calculate FPS, in milliseconds
+const maxFpsSamples = 5 // Number of FPS samples
+const zNear = .05
+const zFar = 100
+
 async function main() {
     const canvas = document.getElementById('gl')
     const gl = canvas.getContext('webgl2')
@@ -14,17 +25,6 @@ async function main() {
         prompt("WebGL2 is not supported by your browser.")
         return
     }
-
-    // Settings
-    let fov = 75
-    const mouseSensitivity = .1
-    const aspectRatio = 16/9.
-    const moveSpeed = 5
-    const clearColor = [.2, .3, .3, 1]
-    const fpsInterval = 500 // How often to calculate FPS, in milliseconds
-    const maxFpsSamples = 5 // Number of FPS samples
-    const zNear = .05
-    const zFar = 100
     
     // FPS data
     let frameCount = 0
@@ -292,3 +292,7 @@ async function main() {
 }
 
 main()
+
+export function setMouseSensitivity(sensitivity) {
+    mouseSensitivity = parseFloat(sensitivity)
+}

@@ -9,6 +9,19 @@
 <body>
     <div class="full-screen ui-container">
         <div id="fps-display">FPS: ---</div>
+        <div id="settings">
+            <div class="input-group">
+                <label for="mouse-sensitivity-slider">Mouse Sensitivity:</label>
+                <input type="range" min=".01" max="1" value=".1" step=".01" id="mouse-sensitivity-slider">
+                <input type="number" min=".01" max="1" value=".1" step=".01" id="mouse-sensitivity-input">
+            </div>
+        </div>
+        <div id="controls-container">
+            <h1>Controls</h1>
+            <div>WASD:<span>forward/back/right/left</span></div>
+            <div>QE:<span>up/down</span></div>
+            <div>Mouse Wheel:<span>adjusts FOV</span></div>
+        </div>
     </div>
 
     <div class="full-screen gl-container">
@@ -22,5 +35,6 @@
     <script src="../shared/glhelpers.js"></script>
 
     <script src="main.js" type="module"></script>
+    <script src="ui.js" type="module"></script>
 </body>
 </html>
