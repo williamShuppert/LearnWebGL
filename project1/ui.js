@@ -9,13 +9,11 @@ sensitivitySlider.value = mouseSensitivity
 
 sensitivitySlider.addEventListener('input', e => {
     localStorage.setItem("mouseSensitivity", e.target.value)
-    sensitivityInput.value = e.target.value
-    setMouseSensitivity(e.target.value)
+    sensitivityInput.value = setMouseSensitivity(e.target.value)
 })
 sensitivityInput.addEventListener('input', e => {
     localStorage.setItem("mouseSensitivity", e.target.value)
-    sensitivitySlider.value = e.target.value
-    setMouseSensitivity(e.target.value)
+    sensitivitySlider.value = setMouseSensitivity(e.target.value)
 })
 
 
@@ -31,11 +29,9 @@ moveSpeedInput.value = moveSpeed
 
 moveSpeedInput.addEventListener('input', e => {
     localStorage.setItem("moveSpeed", e.target.value)
-    moveSpeedSlider.value = e.target.value
-    setMoveSpeed(e.target.value)
+    moveSpeedSlider.value = setMoveSpeed(e.target.value)
 })
 moveSpeedSlider.addEventListener('input', e => {
     localStorage.setItem("moveSpeed", e.target.value)
-    moveSpeedInput.value = e.target.value
-    setMoveSpeed(e.target.value)
+    moveSpeedInput.value = setMoveSpeed(e.target.value)
 })

@@ -294,9 +294,14 @@ async function main() {
 main()
 
 export function setMouseSensitivity(sensitivity) {
-    mouseSensitivity = parseFloat(sensitivity)
+    sensitivity = parseFloat(sensitivity)
+    mouseSensitivity = !isNaN(sensitivity) ? sensitivity : 0
+    console.log(mouseSensitivity)
+    return mouseSensitivity
 }
 
 export function setMoveSpeed(speed) {
-    moveSpeed = parseFloat(speed)
+    speed = parseFloat(speed)
+    moveSpeed = !isNaN(speed) ? speed : 0
+    return moveSpeed
 }
