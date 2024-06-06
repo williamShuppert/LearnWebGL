@@ -28,6 +28,7 @@
 }
 
 body {
+    padding: 0 15px;
     background-color: rgb(238, 238, 238);
     background-image: url("background.jpg");
     background-size: 500px;
@@ -44,6 +45,10 @@ h1 {
     text-align: center;
     font-weight: 300;
     font-size: 3rem;
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
 }
 
 .project-list {
@@ -53,6 +58,10 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .project {
