@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.full-screen {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+}
+
+.gl-container {
+    z-index: -1;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui-container {
+    color: white;
+    pointer-events: none;
+}
+
+.ui-container button,
+.ui-container input {
+    pointer-events: all;
+}
