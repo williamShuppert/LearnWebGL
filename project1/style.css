@@ -33,6 +33,8 @@ h1 {
 .ui-container {
   color: white;
   pointer-events: none;
+  padding: 5px;
+  position: relative;
 }
 .ui-container button,
 .ui-container input {
