@@ -244,7 +244,7 @@ async function main() {
 
         let move = vec3.create()
         vec3.add(move, move, vec3.scale(vec3.create(), cameraRight, input[0]))
-        vec3.add(move, move, vec3.scale(vec3.create(), cameraUp, input[1]))
+        vec3.add(move, move, vec3.scale(vec3.create(), up, input[1]))
         vec3.add(move, move, vec3.scale(vec3.create(), cameraForward, input[2]))
         vec3.scale(move, move, deltaTime * moveSpeed)
 
