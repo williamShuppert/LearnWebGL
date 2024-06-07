@@ -13,7 +13,7 @@ let fov = 75
 export let mouseSensitivity = .1
 export let moveSpeed = 5
 const aspectRatio = 16/9.
-const clearColor = [.2, .3, .3, 1]
+export let clearColor = [0, 0, 0, 1]
 const fpsInterval = 500 // How often to calculate FPS, in milliseconds
 const maxFpsSamples = 5 // Number of FPS samples
 const zNear = .05
@@ -142,10 +142,10 @@ async function main() {
 
     let texture2Loc = gl.createTexture()
     gl.activeTexture(gl.TEXTURE2)
-    // gl.bindTexture(gl.TEXTURE_2D, texture2Loc)
+    gl.bindTexture(gl.TEXTURE_2D, texture2Loc)
     
-    // gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, containerImageEmission.width, containerImageEmission.height, 0, gl.RGB, gl.UNSIGNED_BYTE, containerImageEmission)
-    // gl.generateMipmap(gl.TEXTURE_2D)
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, containerImageEmission.width, containerImageEmission.height, 0, gl.RGB, gl.UNSIGNED_BYTE, containerImageEmission)
+    gl.generateMipmap(gl.TEXTURE_2D)
 
     // Compile shaders
     const lightVertSource = await readFile("lighting.vert")
@@ -220,7 +220,7 @@ async function main() {
     gl.useProgram(program)
     gl.uniform1i(diffuseLoc, 0)
     gl.uniform1i(specularLoc, 1)
-    gl.uniform1i(emissionLoc, 2)
+    gl.uniform1i(emissionLoc, 4) // set to 4 which has no texture, negates any effect on lighting
     gl.uniform1f(shininessLoc, 32)
     gl.uniform3f(lightAmbientLoc, ...lightAmbient)
     gl.uniform3f(lightDiffuseLoc, ...lightDiffuse)
@@ -231,13 +231,14 @@ async function main() {
     // WebGL Settings
     resizeCanvasToDisplaySize(canvas)
     gl.enable(gl.DEPTH_TEST)
-    gl.clearColor(...clearColor)
 
     
     function loop(time) {
         deltaTime = (time - lastTime) / 1000.
         lastTime = time
         calculateFPS()
+
+        gl.clearColor(...clearColor)
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
     
         // Handle movement and looking
@@ -397,7 +398,9 @@ async function main() {
     }
 }
 
-main()
+window.addEventListener("load", e => {
+    main()
+})
 
 export function setMouseSensitivity(sensitivity) {
     sensitivity = parseFloat(sensitivity)
@@ -430,4 +433,8 @@ export function setDiffuse(diffuse) {
 
 export function setSpecular(specular) {
     lightSpecular = specular.scale(1/255)
+}
+
+export function setClearColor(color) {
+    clearColor = [...color.scale(1/255), 1]
 }

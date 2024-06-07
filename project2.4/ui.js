@@ -56,15 +56,17 @@ document.addEventListener('pointerlockchange', e => {
 
 import { vec3 } from "../shared/glmatrix/next/index.js"
 import { hexToRgb, rgbToHex } from "../shared/random.js"
-import { setAmbient, setDiffuse, setSpecular, lightAmbient, lightDiffuse, lightSpecular } from "./main.js"
+import { setAmbient, setDiffuse, setSpecular, lightAmbient, lightDiffuse, lightSpecular, clearColor, setClearColor } from "./main.js"
 
 const ambientInput = document.getElementById("ambient-input")
 const diffuseInput = document.getElementById("diffuse-input")
 const specularInput = document.getElementById("specular-input")
+const clearInput = document.getElementById("clear-input")
 
 ambientInput.value = rgbToHex(...vec3.scale(new vec3(), lightAmbient, 255))
 diffuseInput.value = rgbToHex(...vec3.scale(new vec3(), lightDiffuse, 255))
 specularInput.value = rgbToHex(...vec3.scale(new vec3(), lightSpecular, 255))
+clearInput.value = rgbToHex(...vec3.scale(new vec3(), clearColor, 255))
 
 ambientInput.addEventListener('input', e => {
     setAmbient(hexToRgb(e.target.value))
@@ -74,4 +76,7 @@ diffuseInput.addEventListener('input', e => {
 })
 specularInput.addEventListener('input', e => {
     setSpecular(hexToRgb(e.target.value))
+})
+clearInput.addEventListener('input', e => {
+    setClearColor(hexToRgb(e.target.value))
 })
