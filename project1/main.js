@@ -22,7 +22,7 @@ async function main() {
     const gl = canvas.getContext('webgl2')
     
     if (!gl) {
-        prompt("WebGL2 is not supported by your browser.")
+        alert("WebGL2 is not supported by your browser.")
         return
     }
     
