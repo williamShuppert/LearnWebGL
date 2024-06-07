@@ -35,3 +35,21 @@ moveSpeedSlider.addEventListener('input', e => {
     localStorage.setItem("moveSpeed", e.target.value)
     moveSpeedInput.value = setMoveSpeed(e.target.value)
 })
+
+
+
+import { setCanvasFocus } from "./main.js"
+
+const focusOverlay = document.getElementById("focus-overlay")
+focusOverlay.addEventListener("click", e => {
+    setCanvasFocus().then(e => {
+        focusOverlay.style.opacity = "0%"
+    })
+})
+document.addEventListener('pointerlockchange', e => {
+    if (document.pointerLockElement) {
+        focusOverlay.style.opacity = "0%"
+    } else {
+        focusOverlay.style.opacity = "100%"
+    }
+})

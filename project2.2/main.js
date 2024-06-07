@@ -19,12 +19,14 @@ const maxFpsSamples = 5 // Number of FPS samples
 const zNear = .05
 const zFar = 100
 
+const canvas = document.getElementById('gl')
+let keysPressed = {}
+
 async function main() {
-    const canvas = document.getElementById('gl')
     const gl = canvas.getContext('webgl2')
     
     if (!gl) {
-        prompt("WebGL2 is not supported by your browser.")
+        alert("WebGL2 is not supported by your browser.")
         return
     }
     
@@ -34,7 +36,6 @@ async function main() {
     const fpsArray = []
     let accumulatedTime = 0
     const fpsDisplay = document.getElementById('fps-display')
-    const keysPressed = {}
 
     // General data
     let deltaTime = 0
@@ -239,9 +240,7 @@ async function main() {
 
     // ********************* LISTENERS *********************
     canvas.addEventListener("click", async () => {
-        await canvas.requestPointerLock({
-            unadjustedMovement: true // disable OS-level mouse accel
-        })
+        setCanvasFocus(true)
     })
 
     canvas.addEventListener("mousemove", e => {
@@ -265,16 +264,16 @@ async function main() {
         cameraUp = vec3.cross(vec3.create(), cameraRight, cameraForward)
     })
 
-    window.addEventListener("resize", (e) => {
+    window.addEventListener("resize", e => {
         resizeCanvasToDisplaySize(canvas)
     })
 
-    document.addEventListener('keydown', (event) => {
-        keysPressed[event.key] = true
+    window.addEventListener('keydown', e => {
+        keysPressed[e.key.toLowerCase()] = true
     })
     
-    document.addEventListener('keyup', (event) => {
-        delete keysPressed[event.key]
+    window.addEventListener('keyup', e => {
+        delete keysPressed[e.key.toLowerCase()]
     })
 
     document.addEventListener('wheel', e => {
@@ -286,6 +285,8 @@ async function main() {
 
     // ********************* HELPER METHODS *********************
     function handleMovement() {
+        if (document.pointerLockElement == null) return
+
         let input = vec3.create()
         if (keysPressed["w"]) input[2] += 1
         if (keysPressed["s"]) input[2] -= 1
@@ -349,7 +350,6 @@ main()
 export function setMouseSensitivity(sensitivity) {
     sensitivity = parseFloat(sensitivity)
     mouseSensitivity = !isNaN(sensitivity) ? sensitivity : 0
-    console.log(mouseSensitivity)
     return mouseSensitivity
 }
 
@@ -357,4 +357,13 @@ export function setMoveSpeed(speed) {
     speed = parseFloat(speed)
     moveSpeed = !isNaN(speed) ? speed : 0
     return moveSpeed
+}
+
+export async function setCanvasFocus() {
+    return canvas.requestPointerLock({
+        unadjustedMovement: true // disable OS-level mouse accel
+    }).then(v => {
+        keysPressed = {}
+        return v
+    })
 }
