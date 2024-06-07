@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1 - Getting Started</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay" id="focus-overlay">
+        Click to focus
+    </div>
+
+    <div class="full-screen ui-container">
+        <div id="fps-display">FPS: ---</div>
+        <div id="settings">
+            <div class="input-group">
+                <label for="mouse-sensitivity-slider">Mouse Sensitivity:</label>
+                <input type="range" min=".01" max="1" value=".1" step=".01" id="mouse-sensitivity-slider">
+                <input type="number" min=".01" max="1" value=".1" step=".01" id="mouse-sensitivity-input">
+            </div>
+            <div class="input-group">
+                <label for="move-speed-slider">Move Speed:</label>
+                <input type="range" min="1" max="50" value="5" step=".1" id="move-speed-slider">
+                <input type="number" min="1" max="50" value="5" step=".1" id="move-speed-input">
+            </div>
+            <div class="input-group">
+                <label for="ambient-input">Ambient:</label>
+                <input type="color" id="ambient-input">
+            </div>
+            <div class="input-group">
+                <label for="diffuse-input">Diffuse:</label>
+                <input type="color" id="diffuse-input">
+            </div>
+            <div class="input-group">
+                <label for="specular-input">Specular:</label>
+                <input type="color" id="specular-input">
+            </div>
+        </div>
+        <div id="controls-container">
+            <h1>Controls</h1>
+            <div>WASD:<span>forward/back/left/right</span></div>
+            <div>QE:<span>down/up</span></div>
+            <div>Mouse Wheel:<span>adjusts FOV</span></div>
+            <div>ESC:<span>release cursor</span></div>
+        </div>
+    </div>
+
+    <div class="full-screen gl-container">
+        <canvas id="gl"></canvas>
+    </div>
+
+    <script src="../shared/glmatrix/next/index.js" type="module"></script>
+    <script src="../shared/glmatrix/3.4.0/glmatrix.js"></script>
+
+    <script src="../shared/canvas-helpers.js" type="module"></script>
+    <script src="../shared/glhelpers.js"></script>
+    <script src="../shared/random.js" type="module"></script>
+
+    <script src="main.js" type="module"></script>
+    <script src="ui.js" type="module"></script>
+</body>
+</html>

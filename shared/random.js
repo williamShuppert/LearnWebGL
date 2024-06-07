@@ -26,3 +26,24 @@ export function getRainbowColor(time) {
     const hue = Math.sin(time) * .5 + .5
     return hsvToRgb(hue, 1, 1);
 }
+
+export function hexToRgb(hex) {
+    hex = hex.replace(/^#/, '')
+
+    let bigint = parseInt(hex, 16)
+    let r = (bigint >> 16) & 255
+    let g = (bigint >> 8) & 255
+    let b = bigint & 255
+
+    return new vec3(r, g, b)
+}
+
+export function rgbToHex(r, g, b) {
+    r = Math.max(0, Math.min(255, r))
+    g = Math.max(0, Math.min(255, g))
+    b = Math.max(0, Math.min(255, b))
+    
+    const hex = (r << 16 | g << 8 | b).toString(16).padStart(6, '0')
+    
+    return `#${hex}`
+}
